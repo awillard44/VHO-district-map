@@ -367,7 +367,9 @@
         // Initialize the map centered on Ohio
         const map = L.map('map', {
             zoomControl: true,
-            scrollWheelZoom: true
+            scrollWheelZoom: true,
+            maxBounds: [[38.4, -85.0], [42.4, -80.0]],
+            maxBoundsViscosity: 1.0
         }).setView([40.4173, -82.9071], 7);
 
         // Add a clean, light basemap
