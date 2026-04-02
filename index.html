@@ -978,11 +978,11 @@
             });
 
         // Reset highlight when clicking on map (not on a district)
+        // But keep the info panel visible - only reset on hover to new district
         map.on('click', function (e) {
             if (currentHighlight) {
                 geojsonLayer.resetStyle(currentHighlight);
-                currentHighlight = null;
-                resetInfoPanel();
+                // Don't reset the info panel - let it persist until user hovers another district
             }
         });
     </script>
