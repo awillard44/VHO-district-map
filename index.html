@@ -239,6 +239,95 @@
             letter-spacing: 0.5px;
             color: #666;
         }
+        /* District Search */
+        
+        .search-container {
+            padding: 1rem 1.5rem;
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            position: relative;
+        }
+        
+        .search-label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .district-search {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-family: "Headland One", serif;
+            font-size: 0.95rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .district-search:focus {
+            border-color: #04A6E1;
+        }
+        
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 1.5rem;
+            right: 1.5rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .search-dropdown.active {
+            display: block;
+        }
+        
+        .dropdown-item {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9rem;
+        }
+        
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-item:hover {
+            background: #f0f4f8;
+        }
+        
+        .dropdown-item.coalition {
+            border-left: 3px solid #04A6E1;
+        }
+        
+        .dropdown-item .district-name-result {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        .dropdown-item .district-county {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+        
+        .no-results {
+            padding: 1rem;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
         /* Responsive */
         
         @media (max-width: 768px) {
@@ -305,6 +394,12 @@
         </div>
 
         <aside class="info-panel">
+            <div class="search-container">
+                <label for="districtSearch" class="search-label">Find a District</label>
+                <input type="text" id="districtSearch" class="district-search" placeholder="Type to search..." autocomplete="off">
+                <div class="search-dropdown" id="searchDropdown"></div>
+            </div>
+
             <div class="stats-bar">
                 <div class="stat-item">
                     <div class="stat-value" id="totalDistricts">0</div>
@@ -816,6 +911,7 @@
 
         let geojsonLayer = null;
         let currentHighlight = null;
+        let districtLayers = new Map(); // Map of district name+county to layer for search
 
         // Animate counting up effect
         function animateCount(elementId, targetNumber, duration = 1500) {
@@ -872,6 +968,9 @@
             document.getElementById('districtCounty').textContent = county;
             document.getElementById('districtTaxID').textContent = taxId;
 
+            // Update search input to show selected district
+            document.getElementById('districtSearch').value = name;
+
             // Check coalition status
             const isMember = Array.from(coalitionMembers).some(member =>
                 name.toUpperCase().includes(member)
@@ -898,6 +997,15 @@
         // Event handlers for each feature
         function onEachFeature(feature, layer) {
             const name = feature.properties.name || feature.properties.NAME || 'Unknown';
+            const countyCode = feature.properties.countycode || feature.properties.CountyCode || feature.properties.COUNTYCODE || '';
+            const county = countyNames[countyCode] || '';
+            const irn = feature.properties.irn || feature.properties.IRN || '';
+
+            // Store layer reference for search functionality (using IRN as unique key)
+            districtLayers.set(irn, {
+                layer,
+                feature
+            });
 
             // Add tooltip
             layer.bindTooltip(name, {
@@ -979,6 +1087,9 @@
                 if (data.features && data.features[0]) {
                     console.log('Sample district properties:', data.features[0].properties);
                 }
+
+                // Build searchable district list
+                buildDistrictList();
             })
             .catch(error => {
                 console.error('Error loading GeoJSON:', error);
@@ -1004,6 +1115,121 @@
                 // Don't reset the info panel - let it persist until user hovers another district
             }
         });
+
+        // ============================================================
+        // SEARCH FUNCTIONALITY
+        // ============================================================
+        const searchInput = document.getElementById('districtSearch');
+        const searchDropdown = document.getElementById('searchDropdown');
+        let allDistricts = []; // Will be populated after GeoJSON loads
+
+        // Build searchable district list after data loads
+        function buildDistrictList() {
+            allDistricts = [];
+            districtLayers.forEach((data, irn) => {
+                const props = data.feature.properties;
+                const name = props.name || props.NAME || 'Unknown';
+                const countyCode = props.countycode || props.CountyCode || props.COUNTYCODE || '';
+                const county = countyNames[countyCode] || '';
+                const isMember = Array.from(coalitionMembers).some(member =>
+                    name.toUpperCase().includes(member)
+                );
+                allDistricts.push({
+                    irn,
+                    name,
+                    county,
+                    isMember
+                });
+            });
+            // Sort alphabetically by name
+            allDistricts.sort((a, b) => a.name.localeCompare(b.name));
+            console.log('✅ Built searchable list of', allDistricts.length, 'districts');
+        }
+
+        // Filter and display dropdown results
+        function filterDistricts(query) {
+            const filtered = query.trim() === '' ?
+                allDistricts.slice(0, 20) // Show first 20 if empty
+                :
+                allDistricts.filter(d =>
+                    d.name.toLowerCase().includes(query.toLowerCase()) ||
+                    d.county.toLowerCase().includes(query.toLowerCase())
+                ).slice(0, 50); // Limit results
+
+            if (filtered.length === 0) {
+                searchDropdown.innerHTML = '<div class="no-results">No districts found</div>';
+            } else {
+                searchDropdown.innerHTML = filtered.map(d => `
+                    <div class="dropdown-item ${d.isMember ? 'coalition' : ''}" data-irn="${d.irn}">
+                        <div class="district-name-result">${d.name}</div>
+                        <div class="district-county">${d.county} County${d.isMember ? ' • Coalition Member' : ''}</div>
+                    </div>
+                `).join('');
+            }
+            searchDropdown.classList.add('active');
+        }
+
+        // Select a district from dropdown
+        function selectDistrict(irn) {
+            const data = districtLayers.get(irn);
+            if (data) {
+                const {
+                    layer,
+                    feature
+                } = data;
+
+                // Reset previous highlight
+                if (currentHighlight && currentHighlight !== layer) {
+                    geojsonLayer.resetStyle(currentHighlight);
+                    currentHighlight.closeTooltip();
+                }
+
+                // Highlight and zoom to selected district
+                const name = feature.properties.name || feature.properties.NAME || '';
+                const isMember = Array.from(coalitionMembers).some(member =>
+                    name.toUpperCase().includes(member)
+                );
+
+                layer.setStyle(isMember ? coalitionHoverStyle : hoverStyle);
+                layer.bringToFront();
+                currentHighlight = layer;
+
+                map.fitBounds(layer.getBounds());
+                updateInfoPanel(feature.properties);
+
+                searchDropdown.classList.remove('active');
+            }
+        }
+
+        // Event listeners for search
+        searchInput.addEventListener('input', (e) => {
+            filterDistricts(e.target.value);
+        });
+
+        searchInput.addEventListener('focus', () => {
+            if (allDistricts.length > 0) {
+                filterDistricts(searchInput.value);
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchDropdown.classList.remove('active');
+            }
+        });
+
+        // Handle dropdown item clicks
+        searchDropdown.addEventListener('click', (e) => {
+            const item = e.target.closest('.dropdown-item');
+            if (item) {
+                const irn = item.dataset.irn;
+                selectDistrict(irn);
+            }
+        });
+
+        // Build district list after GeoJSON loads (called from fetch .then)
+        // We need to modify the fetch callback to call buildDistrictList()
     </script>
 </body>
 
