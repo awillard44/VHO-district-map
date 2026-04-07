@@ -537,295 +537,313 @@
         };
 
         // ============================================================
-        // COALITION MEMBER LIST - Updated from vouchershurtohio.com/districts/
-        // Last updated: April 2026
-        // Excludes JVSDs, ESCs, and Career Centers (not in GeoJSON)
-        // Match uses partial string matching (case-insensitive)
-        // ============================================================
-        const coalitionMembers = new Set([
-            'ADA EXEMPTED',
-            'ADENA LOCAL',
-            'AKRON',
-            'ALEXANDER LOCAL',
-            'ALLIANCE CITY',
-            'AMANDA-CLEARCREEK',
-            'AMHERST EXEMPTED',
-            'ANSONIA LOCAL',
-            'ATHENS CITY',
-            'AURORA CITY',
-            'AYERSVILLE LOCAL',
-            'BARBERTON CITY',
-            'BARNESVILLE EXEMPTED',
-            'BEAVER LOCAL',
-            'BEDFORD CITY',
-            'BELLAIRE LOCAL',
-            'BELLEVUE CITY',
-            'BELPRE CITY',
-            'BEREA CITY',
-            'BERNE UNION',
-            'BERKSHIRE LOCAL',
-            'BEXLEY CITY',
-            'BLOOM VERNON',
-            'BLOOMFIELD MESPO',
-            'BLUFFTON EXEMPTED',
-            'BOARDMAN LOCAL',
-            'BOWLING GREEN CITY',
-            'BRECKSVILLE-BROADVIEW',
-            'BRIDGEPORT EXEMPTED',
-            'BRIGHT LOCAL',
-            'BRISTOL LOCAL',
-            'BROWN LOCAL',
-            'BUCKEYE CENTRAL',
-            'BUCYRUS CITY',
-            'CANAL WINCHESTER',
-            'CALDWELL EXEMPTED',
-            'CANFIELD LOCAL',
-            'CANTON CITY',
-            'CANTON LOCAL',
-            'CARDINAL LOCAL',
-            'CARDINGTON-LINCOLN',
-            'CARLISLE LOCAL',
-            'CARROLLTON EXEMPTED',
-            'CELINA CITY',
-            'CENTERBURG LOCAL',
-            'CENTERVILLE CITY',
-            'CHARDON LOCAL',
-            'CHESAPEAKE UNION',
-            'CINCINNATI',
-            'CIRCLEVILLE CITY',
-            'CLAY LOCAL',
-            'CLEARFORK VALLEY',
-            'CLERMONT NORTHEASTERN',
-            'CLEVELAND HEIGHTS',
-            'CLINTON-MASSIE',
-            'CLOVERLEAF LOCAL',
-            'COLUMBIA LOCAL',
-            'COLUMBIANA EXEMPTED',
-            'COLUMBUS CITY',
-            'CONOTTON VALLEY',
-            'COSHOCTON CITY',
-            'CRESTVIEW LOCAL',
-            'CROOKSVILLE EXEMPTED',
-            'CUYAHOGA HEIGHTS',
-            'CUYAHOGA FALLS',
-            'DANBURY LOCAL',
-            'DAWSON BRYANT',
-            'DAYTON',
-            'DEER PARK',
-            'EAST CLINTON',
-            'EAST GUERNSEY',
-            'EAST KNOX',
-            'EAST MUSKINGUM',
-            'EASTERN LOCAL',
-            'EDISON LOCAL',
-            'ELIDA LOCAL',
-            'ELYRIA CITY',
-            'EVERGREEN LOCAL',
-            'FAIRBORN CITY',
-            'FAIRLAND LOCAL',
-            'FAIRLESS LOCAL',
-            'FAIRVIEW PARK',
-            'FAYETTEVILLE-PERRY',
-            'FEDERAL HOCKING',
-            'FINNEYTOWN LOCAL',
-            'FIRELANDS LOCAL',
-            'FOREST HILLS',
-            'FORT FRYE',
-            'FOSTORIA CITY',
-            'FRANKLIN CITY',
-            'FRANKLIN LOCAL',
-            'GAHANNA-JEFFERSON',
-            'GALLIPOLIS CITY',
-            'GENEVA AREA',
-            'GENOA AREA',
-            'GEORGETOWN EXEMPTED',
-            'GIRARD CITY',
-            'GOSHEN LOCAL',
-            'GREEN LOCAL',
-            'GREENFIELD EXEMPTED',
-            'GREENVILLE CITY',
-            'GROVEPORT MADISON',
-            'HAMILTON CITY',
-            'HARDIN-HOUSTON',
-            'HARDIN NORTHERN',
-            'HARRISON HILLS',
-            'HEATH CITY',
-            'HICKSVILLE EXEMPTED',
-            'HILLSDALE',
-            'HOWLAND LOCAL',
-            'HUBBARD EXEMPTED',
-            'HUDSON CITY',
-            'HUNTINGTON LOCAL',
-            'INDEPENDENCE LOCAL',
-            'INDIAN CREEK',
-            'IRONTON CITY',
-            'JACKSON CITY',
-            'JACKSON MILTON',
-            'JAMES A. GARFIELD',
-            'JEFFERSON TOWNSHIP',
-            'JENNINGS LOCAL',
-            'JONATHAN ALDER',
-            'JOSEPH BADGER',
-            'KALIDA LOCAL',
-            'KENTON CITY',
-            'LABRAE LOCAL',
-            'LAKE LOCAL',
-            'LAKEVIEW LOCAL',
-            'LAKEWOOD LOCAL',
-            'LAKOTA LOCAL',
-            'LANCASTER CITY',
-            'LEETONIA EXEMPTED',
-            'LIBERTY LOCAL',
-            'LIBERTY UNION',
-            'LICKING HEIGHTS',
-            'LICKING VALLEY',
-            'LIMA CITY',
-            'LINCOLNVIEW LOCAL',
-            'LISBON EXEMPTED',
-            'LOCKLAND CITY',
-            'LOGAN HOCKING',
-            'LONDON CITY',
-            'LORAIN CITY',
-            'LORDSTOWN LOCAL',
-            'LOUDONVILLE-PERRYSVILLE',
-            'LUCAS LOCAL',
-            'MADISON LOCAL',
-            'MARIETTA CITY',
-            'MARLINGTON LOCAL',
-            'MARION LOCAL',
-            'MARGARETTA LOCAL',
-            'MATHEWS LOCAL',
-            'MAYFIELD CITY',
-            'MAYSVILLE LOCAL',
-            'MEDINA CITY',
-            'MIDDLETOWN CITY',
-            'MILLCREEK WEST UNITY',
-            'MILLER CITY-NEW CLEVELAND',
-            'MINERVA LOCAL',
-            'MISSISSINAWA VALLEY',
-            'MOHAWK LOCAL',
-            'MORGAN LOCAL',
-            'MT. HEALTHY',
-            'NELSONVILLE YORK',
-            'NEW BOSTON',
-            'NEW LEXINGTON',
-            'NEW PHILADELPHIA',
-            'NEWCOMERSTOWN EXEMPTED',
-            'NEWTON FALLS',
-            'NILES CITY',
-            'NOBLE LOCAL',
-            'NORDONIA HILLS',
-            'NORTH CANTON',
-            'NORTH COLLEGE HILL',
-            'NORTHERN LOCAL',
-            'NORTHMONT CITY',
-            'NORTHRIDGE LOCAL',
-            'NORTHWEST LOCAL',
-            'NORTON CITY',
-            'NORWALK CITY',
-            'NORWOOD CITY',
-            'OAK HILL UNION',
-            'OBERLIN CITY',
-            'OLMSTED FALLS',
-            'OSNABURG LOCAL',
-            'OTTAWA-GLANDORF',
-            'PAINT VALLEY',
-            'PANDORA-GILBOA',
-            'PATRICK HENRY',
-            'PIQUA CITY',
-            'PLAIN LOCAL',
-            'PLEASANT LOCAL',
-            'POLAND LOCAL',
-            'PORTSMOUTH CITY',
-            'PREBLE SHAWNEE',
-            'PRINCETON CITY',
-            'REYNOLDSBURG CITY',
-            'RICHMOND HEIGHTS',
-            'RIDGEDALE LOCAL',
-            'RIDGEMONT LOCAL',
-            'RIDGEWOOD LOCAL',
-            'RIPLEY UNION',
-            'RIVERDALE LOCAL',
-            'RIVERVIEW LOCAL',
-            'ROLLING HILLS',
-            'SALEM CITY',
-            'SANDY VALLEY',
-            'SCIOTO VALLEY',
-            'SEBRING LOCAL',
-            'SENECA EAST',
-            'SANDUSKY CITY',
-            'SHADYSIDE LOCAL',
-            'SHAKER HEIGHTS',
-            'SHEFFIELD-SHEFFIELD LAKE',
-            'SHELBY CITY',
-            'SIDNEY CITY',
-            'SOUTH CENTRAL LOCAL',
-            'SOUTH RANGE',
-            'SOUTHERN LOCAL',
-            'SOUTHPOINT LOCAL',
-            'SOUTHWEST LICKING',
-            'SOUTHWESTERN CITY',
-            'SPENCERVILLE LOCAL',
-            'SPRINGFIELD LOCAL',
-            'SPRINGFIELD CITY',
-            'ST. BERNARD-ELMWOOD',
-            'ST. CLAIRSVILLE-RICHLAND',
-            'STEUBENVILLE CITY',
-            'STRASBURG-FRANKLIN',
-            'STRUTHERS CITY',
-            'SWANTON LOCAL',
-            'SYLVANIA',
-            'SYMMES VALLEY',
-            'TALAWANDA CITY',
-            'TOLEDO',
-            'TORONTO CITY',
-            'TRIMBLE LOCAL',
-            'TRI-VALLEY LOCAL',
-            'TROTWOOD-MADISON',
-            'TUSCARAWAS VALLEY',
-            'TWINSBURG CITY',
-            'UNION LOCAL',
-            'UNION-SCIOTO',
-            'UNITED LOCAL',
-            'UPPER ARLINGTON',
-            'UPPER SCIOTO VALLEY',
-            'VAN BUREN LOCAL',
-            'VERMILION LOCAL',
-            'VINTON COUNTY',
-            'WALNUT TOWNSHIP',
-            'WARREN LOCAL',
-            'WARRENSVILLE HEIGHTS',
-            'WASHINGTON LOCAL',
-            'WASHINGTON-NILE',
-            'WAUSEON EXEMPTED',
-            'WAVERLY CITY',
-            'WAYNE TRACE',
-            'WAYNESFIELD GOSHEN',
-            'WELLINGTON EXEMPTED',
-            'WELLSTON CITY',
-            'WELLSVILLE LOCAL',
-            'WEST BRANCH',
-            'WEST CLERMONT',
-            'WEST GEAUGA',
-            'WEST MUSKINGUM',
-            'WESTERN BROWN',
-            'WESTERN LOCAL',
-            'WESTERVILLE CITY',
-            'WHEELERSBURG LOCAL',
-            'WICKLIFFE CITY',
-            'WINDHAM EXEMPTED',
-            'WINTON WOODS',
-            'WOLF CREEK',
-            'WOODMORE LOCAL',
-            'WOODRIDGE LOCAL',
-            'WOOSTER CITY',
-            'WORTHINGTON',
-            'WYOMING CITY',
-            'XENIA COMMUNITY',
-            'YELLOW SPRINGS',
-            'YOUNGSTOWN CITY',
-            'ZANESVILLE CITY',
-            'ZANE TRACE'
+// COALITION MEMBER IRN LIST
+// ============================================================
+// Refactored to use IRNs instead of partial district-name matching.
+// Source files used:
+//   - districts_IRN-districtName-countyCode.txt
+//   - VHO_member-list.txt
+//
+// These source lists still contain a few ambiguous duplicate district names
+// that cannot be resolved confidently without a county or exact IRN:
+//   - Green Local School District
+//   - Lakota Local School District
+//   - Northridge Local School District
+//   - Springfield Local Schools
+//
+// Those four were intentionally left out of the set below so the map does
+// not falsely mark the wrong district. Once you confirm the correct IRNs,
+// just add them to coalitionMemberIRNs.
+// Also excluded because they are not regular school districts in the GeoJSON:
+//   - Buckeye Career Center
+//   - Jefferson County Vocational School
+//   - Ross-Pike Educational Service District
+// ============================================================
+
+        const coalitionMemberIRNs = new Set([
+            '043489',
+            '043497',
+            '043521',
+            '043539',
+            '043562',
+            '043570',
+            '043596',
+            '043604',
+            '043612',
+            '043620',
+            '043638',
+            '043646',
+            '043687',
+            '043711',
+            '043729',
+            '043737',
+            '043752',
+            '043760',
+            '043794',
+            '043802',
+            '043828',
+            '043836',
+            '043844',
+            '043851',
+            '043943',
+            '043968',
+            '043976',
+            '043992',
+            '044008',
+            '044032',
+            '044057',
+            '044065',
+            '044081',
+            '044099',
+            '044107',
+            '044115',
+            '044149',
+            '044156',
+            '044172',
+            '044206',
+            '044222',
+            '044230',
+            '044248',
+            '044255',
+            '044263',
+            '044321',
+            '044370',
+            '044388',
+            '044404',
+            '044412',
+            '044446',
+            '044461',
+            '044479',
+            '044487',
+            '044495',
+            '044503',
+            '044511',
+            '044552',
+            '044560',
+            '044578',
+            '044594',
+            '044644',
+            '044669',
+            '044677',
+            '044719',
+            '044735',
+            '044743',
+            '044750',
+            '044768',
+            '044776',
+            '044784',
+            '044800',
+            '044818',
+            '044826',
+            '044859',
+            '044875',
+            '044909',
+            '044917',
+            '044933',
+            '045005',
+            '045021',
+            '045039',
+            '045047',
+            '045088',
+            '045120',
+            '045138',
+            '045146',
+            '045153',
+            '045161',
+            '045179',
+            '045187',
+            '045195',
+            '045203',
+            '045211',
+            '045237',
+            '045245',
+            '045252',
+            '045278',
+            '045294',
+            '045328',
+            '045351',
+            '045377',
+            '045401',
+            '045419',
+            '045427',
+            '045443',
+            '045450',
+            '045468',
+            '045542',
+            '045567',
+            '045641',
+            '045658',
+            '045666',
+            '045674',
+            '045773',
+            '045807',
+            '045823',
+            '045906',
+            '045914',
+            '045922',
+            '045971',
+            '045997',
+            '046003',
+            '046011',
+            '046037',
+            '046045',
+            '046060',
+            '046078',
+            '046151',
+            '046177',
+            '046326',
+            '046342',
+            '046359',
+            '046391',
+            '046409',
+            '046425',
+            '046433',
+            '046441',
+            '046458',
+            '046474',
+            '046482',
+            '046508',
+            '046557',
+            '046565',
+            '046573',
+            '046599',
+            '046623',
+            '046672',
+            '046706',
+            '046805',
+            '046821',
+            '046847',
+            '046854',
+            '046888',
+            '046904',
+            '046946',
+            '046961',
+            '046979',
+            '047001',
+            '047050',
+            '047092',
+            '047167',
+            '047175',
+            '047183',
+            '047225',
+            '047308',
+            '047332',
+            '047340',
+            '047365',
+            '047464',
+            '047498',
+            '047506',
+            '047514',
+            '047522',
+            '047548',
+            '047597',
+            '047613',
+            '047738',
+            '047761',
+            '047795',
+            '047803',
+            '047829',
+            '047845',
+            '047928',
+            '047936',
+            '047951',
+            '047969',
+            '047993',
+            '048009',
+            '048017',
+            '048041',
+            '048140',
+            '048157',
+            '048231',
+            '048264',
+            '048306',
+            '048314',
+            '048322',
+            '048348',
+            '048355',
+            '048363',
+            '048389',
+            '048421',
+            '048439',
+            '048488',
+            '048512',
+            '048553',
+            '048686',
+            '048694',
+            '048728',
+            '048777',
+            '048793',
+            '048835',
+            '048843',
+            '048850',
+            '048876',
+            '048884',
+            '048900',
+            '048934',
+            '048942',
+            '049031',
+            '049056',
+            '049130',
+            '049148',
+            '049155',
+            '049171',
+            '049205',
+            '049288',
+            '049338',
+            '049346',
+            '049361',
+            '049379',
+            '049395',
+            '049411',
+            '049445',
+            '049452',
+            '049494',
+            '049502',
+            '049510',
+            '049536',
+            '049544',
+            '049577',
+            '049593',
+            '049601',
+            '049635',
+            '049650',
+            '049668',
+            '049684',
+            '049791',
+            '049833',
+            '049841',
+            '049866',
+            '049882',
+            '049890',
+            '049908',
+            '049916',
+            '049932',
+            '049940',
+            '049973',
+            '050021',
+            '050047',
+            '050070',
+            '050096',
+            '050112',
+            '050153',
+            '050161',
+            '050179',
+            '050187',
+            '050195',
+            '050203',
+            '050245',
+            '050294',
+            '050302',
+            '050369',
+            '050393',
+            '050419',
+            '050484',
+            '050500',
+            '050518',
+            '050633',
+            '050690',
+            '050740',
+            '069682',
         ]);
 
         // Ohio county codes to names mapping
@@ -949,12 +967,20 @@
             requestAnimationFrame(updateCount);
         }
 
+
+function getDistrictIrn(properties) {
+    const rawIrn = properties?.irn ?? properties?.IRN ?? '';
+    return String(rawIrn).trim().padStart(6, '0');
+}
+
+function isCoalitionMember(featureOrProperties) {
+    const properties = featureOrProperties?.properties || featureOrProperties || {};
+    return coalitionMemberIRNs.has(getDistrictIrn(properties));
+}
+
         // Function to determine style based on coalition membership
         function getDistrictStyle(feature) {
-            const name = feature.properties.name || feature.properties.NAME || '';
-            const isMember = Array.from(coalitionMembers).some(member =>
-                name.toUpperCase().includes(member)
-            );
+            const isMember = isCoalitionMember(data.feature);
 
             if (isMember) {
                 return coalitionStyle;
@@ -969,7 +995,7 @@
 
             // Handle both lowercase (API) and uppercase (file) field names
             const name = properties.name || properties.NAME || 'Unknown District';
-            const irn = properties.irn || properties.IRN || 'N/A';
+            const irn = getDistrictIrn(properties) || 'N/A';
             const countyCode = properties.countycode || properties.CountyCode || properties.COUNTYCODE || '';
             const county = countyNames[countyCode] || `Code: ${countyCode}`;
             const taxId = properties.taxid || properties.TAXID || 'N/A';
@@ -983,9 +1009,7 @@
             document.getElementById('districtSearch').value = name;
 
             // Check coalition status
-            const isMember = Array.from(coalitionMembers).some(member =>
-                name.toUpperCase().includes(member)
-            );
+            const isMember = isCoalitionMember(properties);
 
             const statusEl = document.getElementById('coalitionStatus');
             const labelEl = document.getElementById('coalitionLabel');
@@ -1010,7 +1034,7 @@
             const name = feature.properties.name || feature.properties.NAME || 'Unknown';
             const countyCode = feature.properties.countycode || feature.properties.CountyCode || feature.properties.COUNTYCODE || '';
             const county = countyNames[countyCode] || '';
-            const irn = feature.properties.irn || feature.properties.IRN || '';
+            const irn = getDistrictIrn(feature.properties);
 
             // Store layer reference for search functionality (using IRN as unique key)
             districtLayers.set(irn, {
@@ -1036,10 +1060,7 @@
                     }
 
                     // Determine if this is a coalition member for correct hover style
-                    const name = feature.properties.name || feature.properties.NAME || '';
-                    const isMember = Array.from(coalitionMembers).some(member =>
-                        name.toUpperCase().includes(member)
-                    );
+                    const isMember = isCoalitionMember(feature);
 
                     layer.setStyle(isMember ? coalitionHoverStyle : hoverStyle);
                     layer.bringToFront();
@@ -1082,7 +1103,7 @@
 
                 // Animate the stat counters
                 animateCount('totalDistricts', featureCount);
-                animateCount('coalitionCount', coalitionMembers.size);
+                animateCount('coalitionCount', coalitionMemberIRNs.size);
 
                 // Add GeoJSON layer
                 geojsonLayer = L.geoJSON(data, {
@@ -1094,7 +1115,7 @@
                 map.fitBounds(geojsonLayer.getBounds());
 
                 console.log('✅ Loaded', featureCount, 'school districts');
-                console.log('✅ Coalition members:', coalitionMembers.size);
+                console.log('✅ Coalition members:', coalitionMemberIRNs.size);
                 if (data.features && data.features[0]) {
                     console.log('Sample district properties:', data.features[0].properties);
                 }
@@ -1142,9 +1163,7 @@
                 const name = props.name || props.NAME || 'Unknown';
                 const countyCode = props.countycode || props.CountyCode || props.COUNTYCODE || '';
                 const county = countyNames[countyCode] || '';
-                const isMember = Array.from(coalitionMembers).some(member =>
-                    name.toUpperCase().includes(member)
-                );
+                const isMember = isCoalitionMember(feature);
                 allDistricts.push({
                     irn,
                     name,
@@ -1197,9 +1216,7 @@
 
                 // Highlight and zoom to selected district
                 const name = feature.properties.name || feature.properties.NAME || '';
-                const isMember = Array.from(coalitionMembers).some(member =>
-                    name.toUpperCase().includes(member)
-                );
+                const isMember = isCoalitionMember(feature);
 
                 layer.setStyle(isMember ? coalitionHoverStyle : hoverStyle);
                 layer.bringToFront();
