@@ -978,7 +978,7 @@
             const name = properties.name || properties.NAME || 'Unknown District';
             const irn = getDistrictIRN(properties) || 'N/A';
             const countyCode = properties.countycode || properties.CountyCode || properties.COUNTYCODE || '';
-            const county = countyNames[countyCode] || `Code: ${countyCode}`;
+            const county = countyNames[countyCode] || countyNames[String(parseInt(countyCode, 10))] || `Code: ${countyCode}`;
             const taxId = properties.taxid || properties.TAXID || 'N/A';
 
             document.getElementById('districtName').textContent = name;
