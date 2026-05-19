@@ -20,7 +20,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: "Headland One", serif;
             font-weight: 400;
@@ -28,8 +28,9 @@
             background: #f8f9fa;
             color: #1a1a2e;
         }
+
         /* Header */
-        
+
         .header {
             display: flex;
             align-items: center;
@@ -39,36 +40,39 @@
             padding: .8rem 2rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
-        
+
         .header img {
             width: 250px;
             height: 71px;
         }
-        
+
         .header h1 {
             font-family: "Bebas Neue", sans-serif;
             font-weight: 400;
             font-style: normal;
         }
-        
+
         .header p {
             font-size: 0.95rem;
             opacity: 0.85;
         }
+
         /* Main Layout */
-        
+
         .main-container {
             display: flex;
             height: calc(100vh - 85px);
         }
+
         /* Map Container */
-        
+
         #map {
             flex: 1;
             min-height: 500px;
         }
+
         /* Info Panel */
-        
+
         .info-panel {
             width: 380px;
             background: white;
@@ -76,50 +80,51 @@
             overflow-y: auto;
             box-shadow: -4px 0 20px rgba(0, 0, 0, 0.05);
         }
-        
+
         .panel-header {
             background: #f0f4f8;
             padding: 1.25rem 1.5rem;
             border-bottom: 1px solid #e0e0e0;
         }
-        
+
         .panel-header h2 {
             font-size: 1.1rem;
             font-weight: 600;
             color: #1a1a2e;
         }
-        
+
         .panel-content {
             padding: 1.5rem;
         }
-        
+
         font .placeholder-message {
             text-align: center;
             padding: 3rem 1.5rem;
             color: #666;
         }
-        
+
         .placeholder-message svg {
             width: 64px;
             height: 64px;
             margin-bottom: 1rem;
             opacity: 0.4;
         }
-        
+
         .placeholder-message p {
             font-size: 1rem;
             line-height: 1.5;
         }
+
         /* District Info Display */
-        
+
         .district-info {
             display: none;
         }
-        
+
         .district-info.active {
             display: block;
         }
-        
+
         .district-name {
             font-family: "Bebas Neue", sans-serif;
             font-weight: 400;
@@ -128,19 +133,19 @@
             margin-bottom: 1rem;
             line-height: 1.3;
         }
-        
+
         .info-grid {
             display: grid;
             gap: 1rem;
         }
-        
+
         .info-item {
             background: #f8f9fa;
             padding: 1rem;
             border-radius: 8px;
             border-left: 3px solid #04A6E1;
         }
-        
+
         .info-label {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -149,38 +154,40 @@
             margin-bottom: 0.25rem;
             font-weight: 600;
         }
-        
+
         .info-value {
             font-size: 1.1rem;
             font-weight: 600;
             color: #1a1a2e;
         }
+
         /* Coalition Status Badge */
-        
+
         .coalition-status {
             margin-top: 1.5rem;
             padding: 1rem;
             border-radius: 8px;
             text-align: center;
         }
-        
+
         .coalition-status.member {
             background: linear-gradient(135deg, #04A6E1 0%, #0385B5 100%);
             color: white;
         }
-        
+
         .coalition-status.non-member {
             background: #f3f4f6;
             color: #6b7280;
             border: 1px dashed #d1d5db;
         }
-        
+
         .coalition-status .status-label {
             font-size: 0.85rem;
             font-weight: 600;
         }
+
         /* Loading State */
-        
+
         .loading-overlay {
             position: absolute;
             top: 0;
@@ -193,11 +200,11 @@
             justify-content: center;
             z-index: 1000;
         }
-        
+
         .loading-spinner {
             text-align: center;
         }
-        
+
         .spinner {
             width: 48px;
             height: 48px;
@@ -206,20 +213,21 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-        
+
         @keyframes spin {
             to {
                 transform: rotate(360deg);
             }
         }
-        
+
         .loading-text {
             margin-top: 1rem;
             color: #666;
             font-size: 0.95rem;
         }
+
         /* Stats Bar */
-        
+
         .stats-bar {
             display: flex;
             gap: 2rem;
@@ -227,32 +235,33 @@
             background: #f8f9fa;
             border-bottom: 1px solid #e0e0e0;
         }
-        
+
         .stat-item {
             text-align: center;
         }
-        
+
         .stat-value {
             font-size: 1.5rem;
             font-weight: 700;
             color: #04A6E1;
         }
-        
+
         .stat-label {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: #666;
         }
+
         /* District Search */
-        
+
         .search-container {
             padding: 1rem 1.5rem;
             background: #fff;
             border-bottom: 1px solid #e0e0e0;
             position: relative;
         }
-        
+
         .search-label {
             display: block;
             font-size: 0.75rem;
@@ -262,7 +271,7 @@
             margin-bottom: 0.5rem;
             font-weight: 600;
         }
-        
+
         .district-search {
             width: 100%;
             padding: 0.75rem 1rem;
@@ -273,11 +282,11 @@
             outline: none;
             transition: border-color 0.2s;
         }
-        
+
         .district-search:focus {
             border-color: #04A6E1;
         }
-        
+
         .search-dropdown {
             position: absolute;
             top: 100%;
@@ -292,65 +301,69 @@
             z-index: 1000;
             display: none;
         }
-        
+
         .search-dropdown.active {
             display: block;
         }
-        
+
         .dropdown-item {
             padding: 0.75rem 1rem;
             cursor: pointer;
             border-bottom: 1px solid #f0f0f0;
             font-size: 0.9rem;
         }
-        
+
         .dropdown-item:last-child {
             border-bottom: none;
         }
-        
+
         .dropdown-item:hover {
             background: #f0f4f8;
         }
-        
+
         .dropdown-item.coalition {
             border-left: 3px solid #04A6E1;
         }
-        
+
         .dropdown-item .district-name-result {
             font-weight: 600;
             color: #1a1a2e;
         }
-        
+
         .dropdown-item .district-county {
             font-size: 0.8rem;
             color: #666;
             margin-top: 0.25rem;
         }
-        
+
         .no-results {
             padding: 1rem;
             text-align: center;
             color: #666;
             font-style: italic;
         }
+
         /* Responsive */
-        
+
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
             }
+
             .info-panel {
                 width: 100%;
                 height: 300px;
                 border-left: none;
                 border-top: 1px solid #e0e0e0;
             }
+
             #map {
                 height: 50vh;
             }
         }
+
         /* Custom Leaflet Tooltip */
-        
+
         .district-tooltip {
             background: white;
             border: none;
@@ -361,26 +374,28 @@
             font-weight: 400;
             font-style: normal;
         }
-        
+
         .leaflet-tooltip-left:before,
         .leaflet-tooltip-right:before {
             border: none;
         }
+
         /* Override Leaflet fonts */
-        
+
         .leaflet-container {
             font-family: "Headland One", serif;
             font-weight: 400;
             font-style: normal;
         }
-        
+
         .leaflet-tooltip {
             font-family: "Headland One", serif;
             font-weight: 400;
             font-style: normal;
         }
+
         /* Remove Leaflet Logo */
-        
+
         .leaflet-bottom {
             display: none;
         }
@@ -407,7 +422,8 @@
         <aside class="info-panel">
             <div class="search-container">
                 <label for="districtSearch" class="search-label">Find a District</label>
-                <input type="text" id="districtSearch" class="district-search" placeholder="Type to search..." autocomplete="off">
+                <input type="text" id="districtSearch" class="district-search" placeholder="Type to search..."
+                    autocomplete="off">
                 <div class="search-dropdown" id="searchDropdown"></div>
             </div>
 
@@ -540,7 +556,7 @@
         // COALITION MEMBER LIST - Updated from vouchershurtohio.com/districts/
         // Last updated: April 2026
         // Excludes JVSDs, ESCs, and Career Centers (not in GeoJSON)
-        // Match uses partial string matching (case-insensitive)
+        // Match uses IRN-based matching
         // ============================================================
         const coalitionMembers = new Set([
             '045187', // ADA EX VILL SCHOOL DISTRICT
@@ -974,17 +990,15 @@
             document.getElementById('placeholderMessage').style.display = 'none';
             document.getElementById('districtInfo').classList.add('active');
 
-            // Handle different possible field names for name, IRN, county code, and tax ID
+            // Handle different possible field names for name and county code
             const name = properties.name || properties.NAME || 'Unknown District';
-            const irn = getDistrictIRN(properties) || 'N/A';
+            // const irn = getDistrictIRN(properties) || 'N/A';
             const countyCode = properties.countycode || properties.CountyCode || properties.COUNTYCODE || '';
             const county = countyNames[countyCode] || countyNames[String(parseInt(countyCode, 10))] || `Code: ${countyCode}`;
-            const taxId = properties.taxid || properties.TAXID || 'N/A';
+            // const taxId = properties.taxid || properties.TAXID || 'N/A';
 
             document.getElementById('districtName').textContent = name;
-            document.getElementById('districtIRN').textContent = irn;
             document.getElementById('districtCounty').textContent = county;
-            document.getElementById('districtTaxID').textContent = taxId;
 
             // Update search input to show selected district
             document.getElementById('districtSearch').value = name;
@@ -1031,7 +1045,7 @@
             });
 
             layer.on({
-                mouseover: function(e) {
+                mouseover: function (e) {
                     const layer = e.target;
 
                     // Reset previous highlight and close its tooltip
@@ -1049,10 +1063,10 @@
 
                     updateInfoPanel(feature.properties);
                 },
-                mouseout: function(e) {
+                mouseout: function (e) {
                     // Don't reset on mouseout - keep showing until another district is hovered
                 },
-                click: function(e) {
+                click: function (e) {
                     map.fitBounds(e.target.getBounds());
                 }
             });
@@ -1127,7 +1141,7 @@
 
         // Reset highlight when clicking on map (not on a district)
         // But keep the info panel visible - only reset on hover to new district
-        map.on('click', function(e) {
+        map.on('click', function (e) {
             if (currentHighlight) {
                 geojsonLayer.resetStyle(currentHighlight);
                 // Don't reset the info panel - let it persist until user hovers another district
