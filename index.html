@@ -1266,7 +1266,7 @@
             onAdd: function (map) {
                 const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
                 const btn = L.DomUtil.create('a', '', container);
-                btn.innerHTML = '⌂';
+                btn.innerHTML = '↺';
                 btn.href = '#';
                 btn.title = 'Reset map view';
                 btn.setAttribute('role', 'button');
@@ -1279,7 +1279,7 @@
                     L.DomEvent.stopPropagation(e);
                     L.DomEvent.preventDefault(e);
 
-                    map.flyTo([40.4173, -82.9071], 7.5);
+                    map.flyTo([40.4173, -82.9071], 3);
 
                     if (currentHighlight && geojsonLayer) {
                         geojsonLayer.resetStyle(currentHighlight);
