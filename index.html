@@ -1257,6 +1257,45 @@
 
         // Build district list after GeoJSON loads (called from fetch .then)
         // We need to modify the fetch callback to call buildDistrictList()
+
+        // ============================================================
+        // RESET VIEW CONTROL
+        // ============================================================
+        const ResetViewControl = L.Control.extend({
+            options: { position: 'topleft' },
+            onAdd: function (map) {
+                const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+                const btn = L.DomUtil.create('a', '', container);
+                btn.innerHTML = '⌂';
+                btn.href = '#';
+                btn.title = 'Reset map view';
+                btn.setAttribute('role', 'button');
+                btn.setAttribute('aria-label', 'Reset map view');
+                btn.style.fontSize = '18px';
+                btn.style.lineHeight = '26px';
+                btn.style.fontWeight = 'bold';
+
+                L.DomEvent.on(btn, 'click', function (e) {
+                    L.DomEvent.stopPropagation(e);
+                    L.DomEvent.preventDefault(e);
+
+                    map.flyTo([40.4173, -82.9071], 7.5);
+
+                    if (currentHighlight && geojsonLayer) {
+                        geojsonLayer.resetStyle(currentHighlight);
+                        currentHighlight.closeTooltip();
+                        currentHighlight = null;
+                    }
+
+                    resetInfoPanel();
+                    document.getElementById('districtSearch').value = '';
+                });
+
+                return container;
+            }
+        });
+
+        new ResetViewControl().addTo(map);
     </script>
 </body>
 
